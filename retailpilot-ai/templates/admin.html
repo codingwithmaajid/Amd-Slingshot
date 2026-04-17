@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetailPilot | Owner Console</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="owner-theme">
+    <div class="container">
+        <header>
+            <h1>Autonomous <span class="accent">Command Center</span></h1>
+            <p>Monitoring AI Decision Engine</p>
+        </header>
+
+        <div class="stats-row">
+            <div class="stat-card"><h3>Status</h3><p class="online">ONLINE</p></div>
+            <div class="stat-card"><h3>Mode</h3><p>Fully Autonomous</p></div>
+        </div>
+
+        <h2>Activity Feed (Agent Logs)</h2>
+        <div id="logFeed" class="log-container">
+            <!-- Logs appear here -->
+            <p>Connecting to system stream...</p>
+        </div>
+    </div>
+
+    <script>
+        async function refreshLogs() {
+            try {
+                const res = await fetch('/api/logs');
+                const logs = await res.json();
+                const feed = document.getElementById('logFeed');
+                
+                feed.innerHTML = logs.map(log => `
+                    <div class="log-item ${log.type}">
+                        <div class="log-time">${log.time}</div>
+                        <div class="log-msg"><strong>${log.msg}</strong></div>
+                        <div class="log-detail">${log.detail}</div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                console.error("Failed to fetch logs", err);
+            }
+        }
+        setInterval(refreshLogs, 2000); // Poll every 2s
+        refreshLogs();
+    </script>
+</body>
+</html>

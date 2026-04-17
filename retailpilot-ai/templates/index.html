@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetailPilot | Storefront</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="customer-theme">
+    <div class="container">
+        <nav><a href="/admin" target="_blank">Switch to Owner View →</a></nav>
+        <header>
+            <h1>Pilot <span class="accent">Market</span></h1>
+            <p>Smart Retail, Powered by AI</p>
+        </header>
+
+        <section class="catalog">
+            <div class="product-card" onclick="buy('Organic Espresso Beans')">
+                <h3>Organic Espresso</h3>
+                <span class="stock-tag">In Stock</span>
+                <button>Order $18.50</button>
+            </div>
+            <div class="product-card oos" onclick="buy('Dark Roast Beans')">
+                <h3>Dark Roast Beans</h3>
+                <span class="stock-tag">Out of Stock</span>
+                <button>Order $15.00</button>
+            </div>
+        </section>
+
+        <div id="customerFeedback" class="feedback-toast hidden"></div>
+    </div>
+    <script>
+        async function buy(product) {
+            const toast = document.getElementById('customerFeedback');
+            toast.className = "feedback-toast";
+            toast.textContent = "Processing order...";
+            toast.classList.remove('hidden');
+
+            try {
+                const res = await fetch('/process', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({query: product})
+                });
+                const data = await res.json();
+                
+                if(data.status === 'success') {
+                    toast.textContent = "✅ Order Placed! Thank you.";
+                    toast.classList.add('success');
+                } else if (data.status === 'out_of_stock') {
+                    toast.textContent = `ℹ️ ${data.message}`;
+                    toast.classList.add('warning');
+                } else {
+                    toast.textContent = `❌ ${data.message}`;
+                    toast.classList.add('warning');
+                }
+            } catch (err) {
+                toast.textContent = "❌ System Error. Try again later.";
+                toast.classList.add('warning');
+            }
+            
+            // Auto-hide toast after 5 seconds
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
