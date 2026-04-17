@@ -1,10 +1,4 @@
-Create a professional, high-quality README.md for my project "Retail Pilot AI".
 
-Follow ALL these requirements strictly:
-
-1. Structure the README with clear sections and proper markdown formatting.
-
-2. Include the following sections:
 
 # 🚀 Retail Pilot AI
 A short, powerful project description (2–3 lines) explaining that this is an AI-powered retail decision assistant.
