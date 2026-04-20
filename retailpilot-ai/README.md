@@ -1,6 +1,6 @@
 # 🚀 Retail Pilot 
 
-Retail Pilot AI is an Autonomous, context-aware decision system designed to revolutionize retail operations. By bridging the gap between customer demand and inventory management, it acts as an intelligent agent that parses intent, fulfills orders seamlessly, and triggers autonomous recovery protocols when supply chain gaps are detected.
+Retail Pilot AI is an Autonomous, Context-aware decision system designed to revolutionize retail operations. By bridging the gap between customer demand and inventory management, it acts as an intelligent agent that parses intent, fulfills orders seamlessly, and triggers autonomous recovery protocols when supply chain gaps are detected.
 
 # 🧠 Problem Statement
 
