@@ -1,4 +1,4 @@
-# 🚀 Retail Pilot AI
+# 🚀 Retail Pilot AI.
 Retail Pilot AI is an intelligent, AI-powered retail decision assistant designed to optimize operations and improve business outcomes. It leverages real-time data and autonomous decision-making to streamline inventory, demand forecasting, and retail efficiency.
 
 ---
